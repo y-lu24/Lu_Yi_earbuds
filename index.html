@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Novo EarBuds</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/main.css" rel="stylesheet">
+  </head>
+   <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer id="model" src="earbuds.gltf" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="img/poster.webp" shadow-intensity="1">
+
+      <button class="Hotspot" slot="hotspot-1" data-position="1.8028763631978793m 2.3922989112120425m -2.0025383128717387m" data-normal="-0.8315977604682433m 0.3817744219267294m 0.4033527681158443m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation" id="hotspot-1"></div>
+      </button>
+
+      <button class="Hotspot" slot="hotspot-2" data-position="2.3716401440519017m 2.7861915237387906m -1.455620613786467m" data-normal="-0.20430273818075909m 0.5459500494121517m 0.8125262670946174m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation"></div>
+      </button>
+      <button class="Hotspot" slot="hotspot-3" data-position="0.9805566178581326m 0.601446274982461m -2.3231680434616973m" data-normal="-0.00020394012106381826m 0.3773376082977952m 0.9260757462392194m" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation"></div>
+      </button>
+    </model-viewer>  
+    <!-- link to greensock main library -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <!-- Our JS folder last -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
