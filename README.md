@@ -1,12 +1,12 @@
 # Earbuds Promotion Website
 
-## Table of Contents
-[About](#about)
-[Skills](#skills)
-[Languages](#languages)
-[Features](#features)
-[Installation](#installation)
-[Contact](#contact)
+## Table of Contents <br/>
+[About](#about)<br/>
+[Skills](#skills)<br/>
+[Languages](#languages)<br/>
+[Features](#features)<br/>
+[Installation](#installation)<br/>
+[Contact](#contact)<br/>
 
 ## About  <a id="about"></a>
 This is the repository about Earbuds Promotional Page for MMED-3039 &amp; MMED-3040
@@ -38,5 +38,3 @@ To run the portfolio locally:
 Feel free to reach out!
 
 Gmail: [Yi Lu](yilu2559@gmail.com)
-
-Thank you for visiting my portfolio!
