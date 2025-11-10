@@ -31,7 +31,6 @@
       const titleElement = document.createElement('h2');
       titleElement.textContent = infoBox.title;
       
-
       const textElement = document.createElement('p');
       textElement.textContent = infoBox.text;
 
@@ -107,4 +106,3 @@
   window.addEventListener("resize", handleResponsive);
 
 })();
-
