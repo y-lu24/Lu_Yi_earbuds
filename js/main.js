@@ -11,13 +11,13 @@
       {
       title: "Ergonomic Fit",
       text:"Designed to match the natural contours of your ear for all-day comfort and a secure fit that stays put.",
-      img: "images/Promo2.jpg",
+      img: "images/Promo3.jpg",
       alt: "EarbudsPromoPoster"
     },
       {
       title: "Compact Charging Case",
       text:"Sleek and pocket-sized charging case that goes wherever you go, delivering power on the move.",
-      img: "images/Promo3.jpg",
+      img: "images/Promo2.jpg",
       alt: "EarbudsPromoPoster"
     },
   ]
@@ -58,7 +58,7 @@
   loadInfor();
   
 
-   function showInfo() {
+  function showInfo() {
     //console.log(this.slot);
     //console.log(`#${this.slot}`);
     //since the slot value matches the id value I can use the slot value as a selector to get to the div I want.
@@ -78,6 +78,44 @@
     hotspot.addEventListener("mouseleave", hideInfo);
   });
 
+  //where to place the descriptions
+  function handleResponsive() {
+    //Creates a responsive handler function.
+    const mobileContainer = document.querySelector(".annotations-mobile");
+    //Gets the mobile container <div class="annotations-mobile"></div> from HTML.
+    const annotations = document.querySelectorAll(".HotspotAnnotation");
+    //Gets all hotspots.
+    
+    if (window.innerWidth < 1200) {
+      //when in mobile size, loop each hotspot
+      annotations.forEach((annotation) => {
+        //move the hotspot to the bottom
+        mobileContainer.appendChild(annotation);
+        //make it visible
+        annotation.style.visibility = "visible";
+      });
+      //when in desktop size
+    } else {
+      //_ means we don't need the infoBox content, only the index
+      //index is 0, 1, 2
+      infoBoxes.forEach((_, index) => {
+        //When index = 0, finds button[slot="hotspot-1"]
+        const hotspotButton = document.querySelector(`button[slot="hotspot-${index + 1}"]`);
+        //When index = 0, finds #hotspot-1
+        const annotation = document.querySelector(`#hotspot-${index + 1}`);
+        if (hotspotButton && annotation) {
+          //put cards back into hotspot bottons
+          hotspotButton.appendChild(annotation);
+          //Hide it (wait for hover to show)
+          annotation.style.visibility = "hidden";
+        }
+      });
+    }
+  }
+  //Execute when page finishes loading
+  window.addEventListener("load", handleResponsive);
+  //Execute when website size changes
+  window.addEventListener("resize", handleResponsive);
+
 })();
 
-// In this version, the event listeners use regular functions instead of arrow functions, so the "this" keyword inside the event listeners will refer to the DOM element that triggered the event.
