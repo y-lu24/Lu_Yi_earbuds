@@ -1,75 +1,167 @@
 model-viewer {
-  width: auto;
-  max-width: 1200px;
-  height: 700px;
+  width: 100%;
+  height: 500px;
   background-color: #ffffff;
   margin: 0 auto;
 }
 
 .Hotspot {
-  background: grey;
-  border: 0;
-  cursor: pointer;
-  width: 45px;
-  height: 39px;
-  transition: all 1s ease-in-out;
+  display: none;
 }
 
 .Hotspot:not([data-visible]) {
-    opacity: 0;
-    width: 45px;
-    height: 38px;
-    pointer-events: none;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .Hotspot:focus {
-  border: 4px solid rgb(0, 128, 200);
-  height: 32px;
+  border: 4px solid gold;
   outline: none;
-  width: 32px;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3);
 }
 
-
-.HotspotAnnotation{
-  visibility: hidden;
+.HotspotAnnotation {
+  visibility: visible;
+  position: static;
   background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   color: rgba(0, 0, 0, 0.8);
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-family: Futura, Helvetica Neue, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
-  left: calc(100% + 1em);
-  max-width: 200px;
-  overflow-wrap: break-word;
-  padding: 0.5em 1em;
-  position: absolute;
-  top: 50%;
-  width: max-content;
-  text-align: left;
+  padding: 1em;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+
+  img {
+    width: 100%; 
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+    display: block;
+  }
 }
 
-  .HotspotAnnotation p {
-    color: #333;
-    line-height: 22px;
-    font-weight: 300;
+.annotations-mobile {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+model-viewer::part(default-progress-bar) {
+  height: 25px;
+  background-color: #a8a6a3;
+}
+
+model-viewer::part(default-progress-mask) {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  model-viewer {
+    width: 100%;
+    max-width: 1200px;
+    height: 850px;
   }
-  
-  .HotspotAnnotation h2 {
+
+  .Hotspot {
+    display: inline-block;
+    background: silver;
+    border: 2px solid gold;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    
+    &:hover {
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+      transform: scale(1.2);
+    }
+  }
+
+  .Hotspot:not([data-visible]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .Hotspot:focus {
+    border: 4px solid gold;
+    height: 45px;
+    outline: none;
+    width: 45px;
+  }
+
+  .HotspotAnnotation {
+    visibility: hidden;
+    position: absolute;
+    left: calc(100% + 1em);
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.8);
+    display: block;
+    font-family: Futura, Helvetica Neue, sans-serif;
     font-size: 18px;
-    margin-bottom: 5px;
+    font-weight: 700;
+    max-width: 280px;
+    overflow-wrap: break-word;
+    padding: 0.5em 1em;
+    width: max-content;
+    text-align: left;
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #333;
+      line-height: 22px;
+      font-weight: 300;
+    }
+
+    img {
+      width: 100%; 
+      max-width: 180px;
+      height: auto;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 4px;
+      display: block;
+    }
   }
 
-
-  /* Progress */
-  // Customize the progress bar
-  //The ::part CSS pseudo-element represents any element within a shadow tree that has a matching part attribute.
-  model-viewer::part(default-progress-bar) {
-    height: 30px;
-    background-color: #E89B36;
-  }
-  
-  model-viewer::part(default-progress-mask) {
+  .annotations-mobile {
     display: none;
   }
+
+  model-viewer::part(default-progress-bar) {
+    height: 30px;
+  }
+}
