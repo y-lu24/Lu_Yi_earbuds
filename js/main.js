@@ -123,7 +123,7 @@
   //Execute when website size changes
   window.addEventListener("resize", handleResponsive);
 
-
+  //Scroll Animation
   const canvas = document.querySelector("#explode-view-canvas");
   const context = canvas.getContext("2d");
 
@@ -154,6 +154,7 @@
         pin: true,
         scrub: 1,
         start: "top top",
+        toggleActions: "play none none reverse"
       },
       onUpdate: render
   });
