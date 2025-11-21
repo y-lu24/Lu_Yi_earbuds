@@ -1,4 +1,22 @@
 (() => {
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollToPlugin);
+
+  const navLinks = document.querySelectorAll("#main-header nav ul li a");
+
+  function scrollLink(e) {    
+    e.preventDefault(); 
+    console.log(e.currentTarget.hash);
+    let selectedLink = e.currentTarget.hash;
+    gsap.to(window, {duration: 1, scrollTo: {y:`${selectedLink}`, offsetY: 100 }});
+  }
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", scrollLink);
+  });
+
+
   const hotspots = document.querySelectorAll(".Hotspot");
 
   const infoBoxes = [
@@ -104,5 +122,75 @@
   window.addEventListener("load", handleResponsive);
   //Execute when website size changes
   window.addEventListener("resize", handleResponsive);
+
+
+  const canvas = document.querySelector("#explode-view");
+  const context = canvas.getContext("2d");
+
+  canvas.width = 1920;
+  canvas.height = 1080;
+
+  const frameCount = 91;
+
+  const images = [];
+
+  const buds = {
+    frame: 0
+  };
+
+  for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      img.src = `images/1_${(i + 1).toString().padStart(4, '0')}.webp`;
+      images.push(img);
+  }
+
+  console.log(images);
+
+  gsap.to(buds, {
+      frame: frameCount - 1,
+      snap: "frame",
+      scrollTrigger: {
+        trigger: "#explode-view",
+        pin: true,
+        scrub: 1,
+        start: "top top",
+      },
+      onUpdate: render
+  });
+
+  images[0].addEventListener("load", render);
+
+  function render() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(images[buds.frame], 0, 0);
+  }
+
+
+  const divisor = document.querySelector("#divisor");
+  const slider = document.querySelector("#slider");
+
+  function moveDivisor() {
+    divisor.style.width = `${slider.value}%`;
+  }
+
+  function resetSlider() {
+    slider.value = 50;
+    moveDivisor();
+  }
+
+  slider.addEventListener("input", moveDivisor);
+  window.addEventListener("load", resetSlider); 
+
+  const earbuds = document.querySelector("#ear-buds");
+  const buttons = document.querySelectorAll('#color-con button');
+
+  function swapColor() {
+    console.log(this.id);
+    earbuds.src = `images/${this.id}.jpg`;
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", swapColor);
+  });
 
 })();

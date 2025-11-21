@@ -1,31 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Custom Earbuds</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Custom Earbuds</title>
+    <link href="css/grid.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
   </head>
    <body>
+
+    <!-- Header & Navigation -->
+    <header class="site-header">
+      <div class="grid-con">
+        <div class="col-span-2 m-col-span-6 l-col-span-6">
+          <div class="logo">
+            <h1>Custom Earbuds</h1>
+          </div>
+        </div>
+        <div class="col-span-2 m-col-span-6 l-col-span-6">
+          <nav class="main-nav">
+            <ul>
+              <li><a href="#ar-model">3D Model</a></li>
+              <li><a href="#xray">X-Ray</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Scroll Animation Section -->
+      <section class="scroll-animation-section">
+          <div class="col-span-full">
+            <canvas id="explode-view"></canvas> 
+        </div>
+      </section>
+
+    <section class="ar-section" id="ar-model">
+      <div class="container">
+        <h2 class="section-title">Explore in 3D</h2>
+        <p class="section-description">Interact with our earbuds in augmented reality</p>  
     <!-- <model-viewer> HTML element -->
-    <model-viewer id="model" src="model/earbuds.gltf" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1">
+        <model-viewer id="model" src="model/earbuds.gltf" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="images/poster.webp" shadow-intensity="1">
 
-      <button class="Hotspot" slot="hotspot-1" data-position="1.8028763631978793m 2.3922989112120425m -2.0025383128717387m" data-normal="-0.8315977604682433m 0.3817744219267294m 0.4033527681158443m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation" id="hotspot-1"></div>
-      </button>
+          <button class="Hotspot" slot="hotspot-1" data-position="1.8028763631978793m 2.3922989112120425m -2.0025383128717387m" data-normal="-0.8315977604682433m 0.3817744219267294m 0.4033527681158443m" data-visibility-attribute="visible">
+            <div class="HotspotAnnotation" id="hotspot-1"></div>
+          </button>
 
-      <button class="Hotspot" slot="hotspot-2" data-position="2.3716401440519017m 2.7861915237387906m -1.455620613786467m" data-normal="-0.20430273818075909m 0.5459500494121517m 0.8125262670946174m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation" id="hotspot-2"></div>
-      </button>
-      <button class="Hotspot" slot="hotspot-3" data-position="0.9805566178581326m 0.601446274982461m -2.3231680434616973m" data-normal="-0.00020394012106381826m 0.3773376082977952m 0.9260757462392194m" data-visibility-attribute="visible">
-          <div class="HotspotAnnotation" id="hotspot-3"></div>
-      </button>
-    </model-viewer>
-    
-    <div class="annotations-mobile"></div>
+          <button class="Hotspot" slot="hotspot-2" data-position="2.3716401440519017m 2.7861915237387906m -1.455620613786467m" data-normal="-0.20430273818075909m 0.5459500494121517m 0.8125262670946174m" data-visibility-attribute="visible">
+            <div class="HotspotAnnotation" id="hotspot-2"></div>
+          </button>
+          <button class="Hotspot" slot="hotspot-3" data-position="0.9805566178581326m 0.601446274982461m -2.3231680434616973m" data-normal="-0.00020394012106381826m 0.3773376082977952m 0.9260757462392194m" data-visibility-attribute="visible">
+            <div class="HotspotAnnotation" id="hotspot-3"></div>
+          </button>
+        </model-viewer>
+
+        <div class="annotations-mobile"></div>
+      </div>
+    </section>
+
+    <section class="xray-section" id="xray">
+      <div class="grid-con">
+        <div class="col-span-full">
+          <h2 class="section-title">See What's Inside</h2>
+      </div>
+      <div class="col-span-full">
+        <div id="xray">
+        <div id="divisor"></div>
+        <input type="range" min="0" max="100" value="50" id="slider">
+          </div>
+      </div>
+      </div>
+    </section>
+
+    <section class="colors-section" id="colors">
+      <div class="grid-con">
+        <section class="col-span-full m-col-start-3 m-col-end-11 l-col-start-4 l-col-end-10" id="buds-con">
+          <h2 class="section-title">Select Your Colour</h2>
+          <section id="color-con">
+            <button id="grey"></button>
+            <button id="blue"></button>
+            <button id="pink"></button>
+          </section>
+          <img src="images/grey.jpg" id="ear-buds" alt="Custom Earbuds">
+        </section>
+      </div>
+    </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="grid-con">
+            <div class="col-span-full m-col-span-full l-col-span-full">
+                <p>&copy; Student Project</p>
+            </div>
+        </div>
+    </footer>
     
     <!-- link to greensock main library -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js"></script>
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <!-- Our JS folder last -->
