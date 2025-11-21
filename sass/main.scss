@@ -1,9 +1,596 @@
 @charset "UTF-8";
 
-//have to include all of these otherwise main.css will be empty
-//We do not create styles in here
 
-@use 'abstracts';
-@use 'base';
-@use 'components';
-@use 'pages';
+// 1. VARIABLES
+// Colors
+$primary-color: #333;
+$secondary-color: #666;
+$accent-color: gold;
+$white: #ffffff;
+$bg-light: #f9f9f9;
+$bg-dark: #2c3e50;
+
+// Typography
+$font-family: 'Futura', 'Helvetica Neue', sans-serif;
+$font-size-base: 16px;
+$font-size-large: 18px;
+$font-size-h2: 2.5em;
+
+// Spacing
+$spacing-xs: 10px;
+$spacing-sm: 20px;
+$spacing-md: 40px;
+$spacing-lg: 60px;
+$spacing-xl: 80px;
+
+// Breakpoints
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1200px;
+
+// Transitions
+$transition-fast: 0.3s ease;
+$transition-normal: 0.5s ease;
+
+// 2. RESET & BASE STYLES
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size-base;
+  line-height: 2;
+  color: $primary-color;
+  background-color: $bg-light;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+// Typography
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: $font-size-h2;
+  margin-bottom: $spacing-md;
+  
+  @media (max-width: $mobile) {
+    font-size: 2em;
+  }
+}
+
+p {
+  margin-bottom: $spacing-sm;
+  color: $secondary-color;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: $spacing-md;
+  color: $primary-color;
+  
+  @media (max-width: $mobile) {
+    font-size: 2em;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.section-description {
+  text-align: center;
+  color: $secondary-color;
+  font-size: $font-size-large;
+  margin-bottom: $spacing-lg;
+  
+  @media (max-width: $mobile) {
+    font-size: $font-size-base;
+    margin-bottom: $spacing-md;
+  }
+}
+
+// 3. HEADER & NAVIGATION
+.site-header {
+    background-color: $white;
+    padding: $spacing-sm 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+.grid-con {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    @media (max-width: $mobile) {
+      flex-direction: column;
+      gap: $spacing-sm;
+    }
+  }
+}
+
+.logo h1 {
+    display: none;
+}
+
+.main-nav {
+  ul {
+    display: flex;
+    gap: $spacing-md;
+    align-items: center;
+    
+    @media (max-width: $mobile) {
+      gap: $spacing-sm;
+        }
+    }
+
+  li a {
+    color: $primary-color;
+    font-weight: 500;
+    font-size: $font-size-large;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: 4px;
+    transition: all $transition-fast;
+    display: block;
+    
+    &:hover {
+      color: $accent-color;
+      background-color: rgba(255, 215, 0, 0.1);
+    }
+    
+    &:focus {
+      outline: 2px solid $accent-color;
+      outline-offset: 2px;
+    }
+    
+    @media (max-width: $mobile) {
+      font-size: $font-size-base;
+      padding: 8px 12px;
+    }
+  }
+}
+
+// 4. SCROLL ANIMATION SECTION
+#explode-view {
+    max-width: 100%;
+  
+  @media (max-width: $tablet) {
+    width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: $mobile) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// 5. AR MODEL SECTION (3D Model Viewer)
+model-viewer {
+  width: 100%;
+  height: 500px;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.Hotspot {
+  display: none;
+}
+
+.Hotspot:not([data-visible]) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.Hotspot:focus {
+  border: 4px solid gold;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.3);
+}
+
+.HotspotAnnotation {
+  visibility: visible;
+  position: static;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Futura, Helvetica Neue, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 1em;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  p {
+    color: #666;
+    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 15px;
+  }
+
+  img {
+    width: 100%; 
+    max-width: 280px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+    display: block;
+  }
+}
+
+.annotations-mobile {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background: #f9f9f9;
+}
+
+model-viewer::part(default-progress-bar) {
+  height: 25px;
+  background-color: #a8a6a3;
+}
+
+model-viewer::part(default-progress-mask) {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  model-viewer {
+    width: 100%;
+    max-width: 1200px;
+    height: 850px;
+  }
+
+  .Hotspot {
+    display: inline-block;
+    background: silver;
+    border: 2px solid gold;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 45px;
+    height: 45px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+    
+    &:hover {
+      box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+      transform: scale(1.2);
+    }
+  }
+
+  .Hotspot:not([data-visible]) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .Hotspot:focus {
+    border: 4px solid gold;
+    height: 45px;
+    outline: none;
+    width: 45px;
+  }
+
+  .HotspotAnnotation {
+    visibility: hidden;
+    position: absolute;
+    left: calc(100% + 1em);
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    color: rgba(0, 0, 0, 0.8);
+    display: block;
+    font-family: Futura, Helvetica Neue, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    max-width: 280px;
+    overflow-wrap: break-word;
+    padding: 0.5em 1em;
+    width: max-content;
+    text-align: left;
+
+    h2 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #333;
+      line-height: 22px;
+      font-weight: 300;
+    }
+
+    img {
+      width: 100%; 
+      max-width: 180px;
+      height: auto;
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 4px;
+      display: block;
+    }
+  }
+
+  .annotations-mobile {
+    display: none;
+  }
+
+  model-viewer::part(default-progress-bar) {
+    height: 30px;
+  }
+}
+
+// 6. X-RAY SECTION
+#xray {
+  position: relative;
+  aspect-ratio: 16/10;
+  background-image: url(../images/earbud.jpg);
+  background-size: cover;
+  border-radius: 15px;
+}
+
+#divisor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  aspect-ratio: 16/10;
+  background-image: url(../images/earbud-x-ray.jpg);
+  background-size: cover;
+  width: 50%;
+  height: 100%;
+  border-radius: 15px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    width: 6px;
+    height: 100%;
+    background-color: #fff;;
+  }
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% + 20px);
+  height: 20px;
+  background: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 0;
+  background: transparent;
+  border: none;
+}
+
+input[type=range]::-moz-range-track {
+  height: 0;
+  background: transparent;
+  border: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  
+}
+
+input[type=range]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+// 7. COLORS SECTION
+#ear-buds {
+    width: 1200px;
+}
+
+.colors-section {
+  padding: $spacing-xl 0;
+  background-color: $bg-light;
+  
+  @media (max-width: $mobile) {
+    padding: $spacing-lg 0;
+  }
+}
+
+#color-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  
+  @media (max-width: $mobile) {
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+}
+
+#color-con button {
+    border: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(223, 223, 223, 0.3);
+  }
+  
+  &:focus {
+    border-color: $accent-color;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  }
+  
+  &:active {
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: $mobile) {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+#grey {background-color: #a8a6a3;}
+
+#blue {background-color: #b2d4fc;}
+
+#pink {background-color: #fabed6;}
+
+// 8. FOOTER
+.site-footer {
+  background-color: $bg-dark;
+  color: $white;
+  padding: $spacing-lg 0;
+  text-align: center;
+  margin-top: $spacing-xl;
+  
+  p {
+    margin: 0;
+    font-size: $font-size-base;
+    opacity: 0.9;
+    color: $white;
+  }
+  
+  @media (max-width: $mobile) {
+    padding: $spacing-md 0;
+    margin-top: $spacing-lg;
+  }
+}
+
+// 9. UTILITY CLASSES & ANIMATIONS
+
+// Fade in animation for sections
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section {
+  animation: fadeIn 0.8s ease-out;
+}
+
+// Loading state
+.loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+// Hide/Show utilities
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
+}
+
+
+// 10. ACCESSIBILITY & SPECIAL STATES
+
+// Focus styles for keyboard navigation
+*:focus {
+  outline: 2px solid $accent-color;
+  outline-offset: 2px;
+}
+
+button:focus,
+a:focus {
+  outline: 2px solid $accent-color;
+  outline-offset: 2px;
+}
+
+// Reduce motion for users who prefer it
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+// Print styles
+@media print {
+  .site-header,
+  .site-footer,
+  nav {
+    display: none;
+  }
+  
+  section {
+    page-break-inside: avoid;
+  }
+  
+  body {
+    background: rgb(122, 122, 122);
+  }
+}
