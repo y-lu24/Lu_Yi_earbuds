@@ -176,18 +176,29 @@ p {
 }
 
 // 4. SCROLL ANIMATION SECTION
-#explode-view {
-    max-width: 100%;
+.scroll-animation-section {
+  padding: $spacing-xl 0;
+  background-color: $bg-light;
   
-  @media (max-width: $tablet) {
-    width: 100%;
-    height: auto;
+  @media (max-width: $mobile) {
+    padding: $spacing-lg 0;
+  }
+}
+
+#explode-view-canvas {
+  display: block;
+  max-width: 1200px;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  aspect-ratio: 16/9;
+  
+  @media (max-width: $desktop) {
+    max-width: 90%;
   }
   
   @media (max-width: $mobile) {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
   }
 }
 
@@ -361,12 +372,30 @@ model-viewer::part(default-progress-mask) {
 }
 
 // 6. X-RAY SECTION
-#xray {
+.xray-section {
+  padding: $spacing-xl 0;
+  
+  @media (max-width: $mobile) {
+    padding: $spacing-lg 0;
+  }
+}
+
+#xray-wrapper {
   position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
   aspect-ratio: 16/10;
+  border-radius: 15px;
   background-image: url(../images/earbud.jpg);
   background-size: cover;
-  border-radius: 15px;
+  
+  @media (max-width: $desktop) {
+    max-width: 90%;
+  }
+  
+  @media (max-width: $mobile) {
+    max-width: 100%;
+  }
 }
 
 #divisor {
@@ -438,7 +467,16 @@ input[type=range]::-moz-range-thumb {
 
 // 7. COLORS SECTION
 #ear-buds {
-    width: 1200px;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto;
+}
+
+#buds-con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .colors-section {
@@ -491,9 +529,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 #grey {background-color: #a8a6a3;}
-
 #blue {background-color: #b2d4fc;}
-
 #pink {background-color: #fabed6;}
 
 // 8. FOOTER
@@ -535,62 +571,3 @@ section {
   animation: fadeIn 0.8s ease-out;
 }
 
-// Loading state
-.loading {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-// Hide/Show utilities
-.hidden {
-  display: none !important;
-}
-
-.show {
-  display: block !important;
-}
-
-
-// 10. ACCESSIBILITY & SPECIAL STATES
-
-// Focus styles for keyboard navigation
-*:focus {
-  outline: 2px solid $accent-color;
-  outline-offset: 2px;
-}
-
-button:focus,
-a:focus {
-  outline: 2px solid $accent-color;
-  outline-offset: 2px;
-}
-
-// Reduce motion for users who prefer it
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  html {
-    scroll-behavior: auto;
-  }
-}
-
-// Print styles
-@media print {
-  .site-header,
-  .site-footer,
-  nav {
-    display: none;
-  }
-  
-  section {
-    page-break-inside: avoid;
-  }
-  
-  body {
-    background: rgb(122, 122, 122);
-  }
-}
