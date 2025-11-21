@@ -3,13 +3,13 @@
   gsap.registerPlugin(ScrollTrigger);
   gsap.registerPlugin(ScrollToPlugin);
 
-  const navLinks = document.querySelectorAll("#main-header nav ul li a");
+  const navLinks = document.querySelectorAll(".site-header nav ul li a");
 
   function scrollLink(e) {    
     e.preventDefault(); 
     console.log(e.currentTarget.hash);
     let selectedLink = e.currentTarget.hash;
-    gsap.to(window, {duration: 1, scrollTo: {y:`${selectedLink}`, offsetY: 100 }});
+    gsap.to(window, {duration: 0.7, scrollTo: {y:`${selectedLink}`, offsetY: 100, ease: "power2.inOut"}});
   }
 
   navLinks.forEach((link) => {
@@ -124,7 +124,7 @@
   window.addEventListener("resize", handleResponsive);
 
 
-  const canvas = document.querySelector("#explode-view");
+  const canvas = document.querySelector("#explode-view-canvas");
   const context = canvas.getContext("2d");
 
   canvas.width = 1920;
@@ -150,7 +150,7 @@
       frame: frameCount - 1,
       snap: "frame",
       scrollTrigger: {
-        trigger: "#explode-view",
+        trigger: "#explode-view-canvas",
         pin: true,
         scrub: 1,
         start: "top top",
@@ -184,13 +184,8 @@
   const earbuds = document.querySelector("#ear-buds");
   const buttons = document.querySelectorAll('#color-con button');
 
-  function swapColor(e) {
-        console.log(e.currentTarget.id);
-        earbuds.src = `images/${e.currentTarget.id}.jpg`;
-  }
-
   function swapColor() {
-        earbuds.src=`images/${this.id}.jpg`;
+    earbuds.src=`images/${this.id}.jpg`;
   }
 
   buttons.forEach((button) => {
