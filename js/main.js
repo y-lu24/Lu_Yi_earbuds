@@ -184,13 +184,17 @@
   const earbuds = document.querySelector("#ear-buds");
   const buttons = document.querySelectorAll('#color-con button');
 
+  function swapColor(e) {
+        console.log(e.currentTarget.id);
+        earbuds.src = `images/${e.currentTarget.id}.jpg`;
+  }
+
   function swapColor() {
-    console.log(this.id);
-    earbuds.src = `images/${this.id}.jpg`;
+        earbuds.src=`images/${this.id}.jpg`;
   }
 
   buttons.forEach((button) => {
     button.addEventListener("click", swapColor);
-  });
+  })
 
 })();
